@@ -27,6 +27,11 @@ request_count = Counter(
     ["method", "endpoint", "status_code"],
 )
 
+redis_app_cache_miss = Counter(
+    'redis_app_cache_miss',
+    "Number of cache missed when getting items from Redis",
+)
+
 request_duration = Histogram(
     "http_request_duration_seconds",
     "HTTP request duration in seconds",
@@ -109,6 +114,7 @@ def get_item(key):
     try:
         value = redis_client.get(key)
         if value is None:
+            redis_app_cache_miss.inc()
             return jsonify({"error": "Key not found"}), 404
 
         # Increment cache hit counter
@@ -119,7 +125,6 @@ def get_item(key):
         return jsonify({"error": "Cannot connect to Redis"}), 503
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
 
 @app.get("/items")
 @instrument_endpoint
