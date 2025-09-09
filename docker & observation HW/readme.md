@@ -36,3 +36,6 @@ pip install -r requirements.txt
 
 # Run Flask app
 python app.py
+
+# Run Test
+python run-test.py
