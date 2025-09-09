@@ -23,6 +23,19 @@ This project is a **Flask application** instrumented with **Prometheus metrics**
 - **Cache misses** (`redis_app_cache_miss`)
 - HTTP request counts and durations
 
+## Cache Hit & Miss Tracking
+
+The application tracks Redis cache efficiency:
+
+- **Cache Hits**: When a requested key exists in Redis, the `redis_app_cache_hit` counter is incremented.  
+- **Cache Misses**: When a requested key does **not** exist, the `redis_app_cache_miss` counter is incremented:
+
+```python
+value = redis_client.get(key)
+if value is None:
+    redis_app_cache_miss.inc()
+    return jsonify({"error": "Key not found"}), 404
+```
 ## Grafana Dashboard
 Here is an overview of monitoring in Grafana:
 <img width="1726" height="634" alt="image" src="https://github.com/user-attachments/assets/809828b3-75b2-4277-ae97-8dbf5c99e5a2" />
