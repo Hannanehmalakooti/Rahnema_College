@@ -40,7 +40,7 @@ if value is None:
 Here is an overview of monitoring in Grafana:
 <img width="1726" height="634" alt="image" src="https://github.com/user-attachments/assets/809828b3-75b2-4277-ae97-8dbf5c99e5a2" />
 
-<img width="1591" height="685" alt="image" src="https://github.com/user-attachments/assets/c588594d-06d5-4021-8564-d3c2ce3f0231" />
+<img width="1568" height="672" alt="image" src="https://github.com/user-attachments/assets/3600690f-067c-408a-9d5e-037dc72b46f1" />
 
 
 
